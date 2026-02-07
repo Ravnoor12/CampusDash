@@ -12,7 +12,7 @@ namespace CampusDash.Backend.Controllers
     public class OrderController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private const double EarthRadius = 6731; // km
+        private const double EarthRadius = 6371; // km
 
         public OrderController(ApplicationDbContext context)
         {
@@ -105,7 +105,50 @@ namespace CampusDash.Backend.Controllers
                 ShoppingList = orderDto.ShoppingList
             });
         }
+        [HttpPost("LocateShop")]
+        public IActionResult LocateDelivery([FromBody] LocateDto LocateDto)
+        {
+            double shopLatRad = DegreeRad(LocateDto.ShopLat);
+            double shopLongRad = DegreeRad(LocateDto.ShopLong);
+            double DeliveryLatRad = DegreeRad(LocateDto.DelivoryLat);
+            double DeliveryLongRad = DegreeRad(LocateDto.DelivoryLong);
+            double distance = HarvisineDistance(shopLongRad, DeliveryLongRad, shopLatRad, DeliveryLatRad);
 
+            
+            // Estimated delivery time (simple: 30 min per 10 km)
+            double estimatedTimeMinutes = distance * 3;
+                return Ok(new
+            {
+                DeliveryEmail = LocateDto.DelivoryEmail,
+                Order = LocateDto.OrderName,
+                DistanceKm = Math.Round(distance, 2),
+                EstimatedTimeMinutes = Math.Round(estimatedTimeMinutes, 0),
+                DeliveryAddress = LocateDto.CustomerAddress,
+                LocateDto.ShoppingList
+            });
+        }
+        [HttpPost("LocateCustomer")]
+        public IActionResult LocateDelivery([FromBody] LocateDto LocateDto)
+        {
+            double CustLatRad = DegreeRad(LocateDto.ShopLat);
+            double CustLongRad = DegreeRad(LocateDto.ShopLong);
+            double DeliveryLatRad = DegreeRad(LocateDto.CustomerLat);
+            double DeliveryLongRad = DegreeRad(LocateDto.CustomerLong);
+            double distance = HarvisineDistance(CustLongRad, DeliveryLongRad, CustLatRad, DeliveryLatRad);
+
+            
+            // Estimated delivery time (simple: 30 min per 10 km)
+            double estimatedTimeMinutes = distance * 3;
+                return Ok(new
+            {
+                DeliveryEmail = LocateDto.DelivoryEmail,
+                Order = LocateDto.OrderName,
+                DistanceKm = Math.Round(distance, 2),
+                EstimatedTimeMinutes = Math.Round(estimatedTimeMinutes, 0),
+                DeliveryAddress = LocateDto.CustomerAddress,
+                LocateDto.ShoppingList
+            });
+        }
         // OTP generator
         private int GenerateOtp()
         {

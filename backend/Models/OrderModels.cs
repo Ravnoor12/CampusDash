@@ -25,4 +25,5 @@ public class Order{
     public double CustLong {get;set;}
     [Required]
     public int Otp {get;set;}
+    
 }

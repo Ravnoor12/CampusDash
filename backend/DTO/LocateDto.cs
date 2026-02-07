@@ -1,5 +1,6 @@
-namespace CampusDash.Backend.DTO;
-public class OrderDto
+using System.Diagnostics.Contracts;
+
+public class LocateDto
     {
         public string OrderName { get; set; } = null!; // single order
         public string CustomerEmail { get; set; } = null!;
@@ -9,9 +10,8 @@ public class OrderDto
         public double CustomerLong { get; set; }
         public double ShopLat { get; set; }
         public double ShopLong { get; set; }
-        public List<string> DEmail { get; set; } = new();
-        public List<double> DLat { get; set; } = new();
-        public List<double> DLong { get; set; } = new();
-        public List<string> AssignedEmails { get; set; } = new(); // track assigned delivery persons
+        public string DelivoryEmail {get; set;}
+        public double DelivoryLat {get; set;}
+        public double DelivoryLong {get; set;}
         public string Status { get; set; } = "New";
     }
