@@ -2,12 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using CampusDash.Backend;
 namespace CampusDash.Backend.Controllers;
 
-public class OrderController
+[Route("api/[controller]")]
+[ApiController]
+public class OrderController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrderController : ControllerBase
-    {
         private readonly ApplicationDbContext _context;
 
         public OrderController(ApplicationDbContext context)
@@ -256,7 +254,6 @@ public class OrderController
         {
             return _context.Orders.Any(e => e.Id == id);
         }
-    }
         // GET: api/Order/status/{status}
         [HttpGet("status/{status}")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByStatus(string status)
@@ -265,4 +262,4 @@ public class OrderController
                 .Where(o => o.Status == status)
                 .ToListAsync();
         }
-}
+    }
