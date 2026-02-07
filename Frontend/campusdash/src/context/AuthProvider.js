@@ -44,7 +44,7 @@ export default function AuthProvider({ children }) {
     console.log("Login successful, customer data:", customer);
     setAuthInfo({
         profile: { ...customer },
-        email: customer.Email,
+         email: email || "singh.288@wright.edu",
         isLoggedIn: true, 
         isPending: false,
         error: ''

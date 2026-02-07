@@ -11,16 +11,23 @@ const OrderSummary = () => {
   const handleConfirm = async () => {
     setLoading(true);
     console.log(authInfo)
+    console.log(orderData)
     const payload = {
       OrderName: orderData.items.substring(0, 40), 
-      CustomerEmail: authInfo.email,
-      CustomerLat: orderData.delivery.coords[0],
-      CustomerLong: orderData.delivery.coords[1],
-      ShopLat: orderData.pickup.coords[0],
-      ShopLong: orderData.pickup.coords[1],
-      DEmail: orderData.selectedPeer?.email || "null",
-      DLat: orderData.selectedPeer ? orderData.selectedPeer.location[0] : null,
-      DLong: orderData.selectedPeer ? orderData.selectedPeer.location[1] : null,
+      CustomerEmail: "singh.288@wright.edu",
+     CustomerLat: 39.7812,
+     CustomerLong: -84.0631,
+      ShopLat: 39.7912,
+      ShopLong:-84.0631,
+      DEmail: [ orderData.selectedPeer?.email || "null"],
+      DLat: [
+    39.7820,
+    39.7830
+  ],
+      DLong: [
+    -84.0650,
+    -84.0660
+  ],
       AssignedEmails: [],
       Status: "New"
     };
