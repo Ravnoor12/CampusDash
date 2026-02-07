@@ -7,8 +7,8 @@ namespace CampusDash.Backend.Controllers;
 [ApiController]
 [Route("api/customer")]
 public class CustomerController : ControllerBase {
-    private readonly AppDbContext _context;
-    public CustomerController(AppDbContext context) {
+    private readonly ApplicationDbContext _context;
+    public CustomerController(ApplicationDbContext context) {
         _context = context;
     }
     [HttpPost("signin")]
@@ -17,7 +17,7 @@ public class CustomerController : ControllerBase {
         if(customer == null || customer.Password.Length == 0 || customer.Password != dto.Password) {
             return Unauthorized("The email is not authorized with the application");
         }
-        var result = new CustomerDto
+        var result = new Customer
             {
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
