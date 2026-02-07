@@ -3552,25 +3552,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/rohangoparaju/.nuget/packages/": {}
+    "C:\\Users\\jhow_\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rohangoparaju/Desktop/C#/Hackthon/CampusDash/Backend/backend.csproj",
+      "projectUniqueName": "C:\\Users\\jhow_\\MainDocs\\CampusDash\\CampusDash\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "/Users/rohangoparaju/Desktop/C#/Hackthon/CampusDash/Backend/backend.csproj",
-      "packagesPath": "/Users/rohangoparaju/.nuget/packages/",
-      "outputPath": "/Users/rohangoparaju/Desktop/C#/Hackthon/CampusDash/Backend/obj/",
+      "projectPath": "C:\\Users\\jhow_\\MainDocs\\CampusDash\\CampusDash\\backend\\backend.csproj",
+      "packagesPath": "C:\\Users\\jhow_\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jhow_\\MainDocs\\CampusDash\\CampusDash\\backend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/rohangoparaju/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\jhow_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3589,7 +3596,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -3637,7 +3644,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.8/libexec/sdk/9.0.109/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

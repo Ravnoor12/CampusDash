@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
-namespace CampusDash.Backend.Models;
-public class Order{
+namespace Campus.Backend.Models;
+public class Order
+{
     [Key]
     public int Id {get;set;}
     [Required]
-    public string CustomerEmail {get;set;} = null!; // Customer email
+    [ForeignKey("Customer")]
+    public string CustomerEmail { get; set; } = null!;
     [Required]
+    [ForeignKey("Customer")]
     public string DelivaryManEmail {get;set;} = null!;
     [Required]
     public string StoreName {get;set;} = string.Empty;
@@ -25,4 +28,6 @@ public class Order{
     public double CustLong {get;set;}
     [Required]
     public int Otp {get;set;}
+    public virtual Customer Customer { get; set; }
+    public virtual Customer Devliveryman { get; set; }
 }

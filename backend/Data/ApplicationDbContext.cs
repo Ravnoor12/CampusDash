@@ -1,8 +1,10 @@
-using Microsoft.EntityFrameworkCore;
 using CampusDash.Backend.Models;
+using Microsoft.EntityFrameworkCore;
 namespace CampusDash.Backend.Data;
-public class ApplicationDbContext : DbContext {
-      public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {
+public class ApplicationDbContext : DbContext
+{
+      public ApplicationDbContext(IDbContextFactory<ApplicationDbContext> options) : base((DbContextOptions)options) 
+      {
 
       }
       public DbSet<Customer> Customers {get;set;} = null!;
