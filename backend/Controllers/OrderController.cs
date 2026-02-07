@@ -26,9 +26,7 @@ public class OrderController : ControllerBase {
         double customer_long = DegreeRad(dto.CustomerLat);
         double shop_lat = DegreeRad(dto.ShopLat);
         double shop_long = DegreeRad(dto.ShopLong);
-        double dlat = DegreeRad(dto.DLat);
-        double dlong = DegreeRad(dto.DLong);
-        double
+
     }
     public double DegreeRad(double deg) => deg*Math.PI /180;
     [HttpGet("/cheapest")]
