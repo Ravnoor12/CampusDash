@@ -3,6 +3,8 @@ public class OrderDto
     {
         public string OrderName { get; set; } = null!; // single order
         public string CustomerEmail { get; set; } = null!;
+        public string CustomerAddress {get; set; } = string.Empty;
+        public List<string> ShoppingList {get; set;} = new();
         public double CustomerLat { get; set; }
         public double CustomerLong { get; set; }
         public double ShopLat { get; set; }

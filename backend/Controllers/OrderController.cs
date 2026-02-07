@@ -58,7 +58,7 @@ namespace CampusDash.Backend.Controllers
             double customerLongRad = DegreeRad(orderDto.CustomerLong);
             double shopLatRad = DegreeRad(orderDto.ShopLat);
             double shopLongRad = DegreeRad(orderDto.ShopLong);
-
+            
             double minDistance = double.MaxValue;
             int idx = -1;
 
@@ -100,7 +100,9 @@ namespace CampusDash.Backend.Controllers
                 Order = orderDto.OrderName,
                 DistanceKm = Math.Round(minDistance, 2),
                 EstimatedTimeMinutes = Math.Round(estimatedTimeMinutes, 0),
-                OTP = otp
+                OTP = otp,
+                DeliveryAddress = orderDto.CustomerAddress,
+                ShoppingList = orderDto.ShoppingList
             });
         }
 
