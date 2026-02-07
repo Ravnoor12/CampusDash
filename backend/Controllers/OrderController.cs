@@ -82,10 +82,7 @@ public class OrderController
             existingOrder.Status = orderUpdate.Status;
             existingOrder.StoreLat = orderUpdate.StoreLat;
             existingOrder.StoreLong = orderUpdate.StoreLong;
-            existingOrder.DeliveryManLat = orderUpdate.DeliveryManLat;
-            existingOrder.DelivaryManLong = orderUpdate.DelivaryManLong;
-            existingOrder.CustLat = orderUpdate.CustLat;
-            existingOrder.CustLong = orderUpdate.CustLong;
+            existingOrder.Otp = orderUpdate.Otp;
 
             try
             {
@@ -140,7 +137,6 @@ public class OrderController
             return NoContent();
         }
 
-        // DELETE: api/Order/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
@@ -161,6 +157,8 @@ public class OrderController
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByCustomer(string email)
         {
             return await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
                 .Where(o => o.CustomerEmail == email)
                 .ToListAsync();
         }
@@ -170,6 +168,8 @@ public class OrderController
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByDeliveryMan(string email)
         {
             return await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
                 .Where(o => o.DelivaryManEmail == email)
                 .ToListAsync();
         }
@@ -179,6 +179,8 @@ public class OrderController
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByStore(string storeName)
         {
             return await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
                 .Where(o => o.StoreName == storeName)
                 .ToListAsync();
         }
@@ -188,8 +190,66 @@ public class OrderController
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByStatus(string status)
         {
             return await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
                 .Where(o => o.Status == status)
                 .ToListAsync();
+        }
+
+        // GET: api/Order/otp/{otp}
+        [HttpGet("otp/{otp}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByOtp(int otp)
+        {
+            return await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
+                .Where(o => o.Otp == otp)
+                .ToListAsync();
+        }
+
+        // GET: api/Order/verify/{id}/{otp}
+        [HttpGet("verify/{id}/{otp}")]
+        public async Task<ActionResult<bool>> VerifyOrderOtp(int id, int otp)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return order.Otp == otp;
+        }
+
+        // GET: api/Order/search
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Order>>> SearchOrders(
+            [FromQuery] string? customerEmail = null,
+            [FromQuery] string? deliveryManEmail = null,
+            [FromQuery] string? storeName = null,
+            [FromQuery] string? status = null,
+            [FromQuery] int? otp = null)
+        {
+            var query = _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Devliveryman)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(customerEmail))
+                query = query.Where(o => o.CustomerEmail.Contains(customerEmail));
+
+            if (!string.IsNullOrEmpty(deliveryManEmail))
+                query = query.Where(o => o.DelivaryManEmail.Contains(deliveryManEmail));
+
+            if (!string.IsNullOrEmpty(storeName))
+                query = query.Where(o => o.StoreName.Contains(storeName));
+
+            if (!string.IsNullOrEmpty(status))
+                query = query.Where(o => o.Status == status);
+
+            if (otp.HasValue && otp.Value > 0)
+                query = query.Where(o => o.Otp == otp.Value);
+
+            return await query.ToListAsync();
         }
 
         private bool OrderExists(int id)
@@ -197,4 +257,12 @@ public class OrderController
             return _context.Orders.Any(e => e.Id == id);
         }
     }
+        // GET: api/Order/status/{status}
+        [HttpGet("status/{status}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByStatus(string status)
+        {
+            return await _context.Orders
+                .Where(o => o.Status == status)
+                .ToListAsync();
+        }
 }
