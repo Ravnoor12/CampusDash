@@ -4,19 +4,19 @@ public class Order{
     [Key]
     public int Id {get;set;}
     [Required]
-    public string CustomerEmail {get;set;} = null!; // Customer email
+    public string CustomerEmail {get;set;} = null!;
     [Required]
-    public string DelivaryManEmail {get;set;} = null!;
+    public string DEmail {get;set;} = null!;
     [Required]
     public string StoreName {get;set;} = string.Empty;
     [Required]
     public string Status {get;set;} = "New";
     [Required]
-    public double StoreLat {get;set;}
+    public double StoreLat {get;set;} = null!;
     [Required]
-    public double StoreLong {get;set;}
+    public double StoreLong {get;set;} = null!;
     [Required]
-    public double DeliveryManLat {get;set;}
+    public double DLat {get;set;}
     [Required]
     public double DelivaryManLong {get;set;}
     [Required]
