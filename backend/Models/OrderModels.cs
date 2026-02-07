@@ -1,12 +1,12 @@
-using System.ComponentModel.DataAnnotaions;
-namespace Campus.Backend.Models;
+using System.ComponentModel.DataAnnotations;
+namespace CampusDash.Backend.Models;
 public class Order{
     [Key]
     public int Id {get;set;}
     [Required]
     public string CustomerEmail {get;set;} = null!; // Customer email
     [Required]
-    public string DelivaryManEmail {get;set;} = null!:
+    public string DelivaryManEmail {get;set;} = null!;
     [Required]
     public string StoreName {get;set;} = string.Empty;
     [Required]
@@ -23,4 +23,6 @@ public class Order{
     public double CustLat {get;set;}
     [Required]
     public double CustLong {get;set;}
+    [Required]
+    public int Otp {get;set;}
 }
