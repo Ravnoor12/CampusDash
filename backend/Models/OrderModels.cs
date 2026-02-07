@@ -12,9 +12,9 @@ public class Order{
     [Required]
     public string Status {get;set;} = "New";
     [Required]
-    public double StoreLat {get;set;} = null!;
+    public double StoreLat {get;set;}
     [Required]
-    public double StoreLong {get;set;} = null!;
+    public double StoreLong {get;set;}
     [Required]
     public double DLat {get;set;}
     [Required]

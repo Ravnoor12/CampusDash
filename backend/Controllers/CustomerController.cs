@@ -42,10 +42,10 @@ public IActionResult SignUp([FromBody] SignInDto dto)
     {
         Email = dto.Email,
         Password = dto.Password,
-        FirstName = dto.FirstName,
-        LastName = dto.LastName,
-        Latitude = 0,
-        Longitude = 0
+        FirstName = existing.FirstName,
+        LastName = existing.LastName,
+        Latitude = existing.Latitude,
+        Longitude = existing.Longitude
     };
 
     _context.Customers.Add(newCustomer);
