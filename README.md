@@ -8,7 +8,7 @@
 Ravnoor Singh | singh.288@wright.edu |
 Rohan Goparaju | goparaju.5@wright.edu | 
 Prince Patel | patel.1645@wright.edu |
-Noah howlett | www.greatdog@gmail.com |
+Noah howlett | howlett.4@wright.edu |
 
 
 
